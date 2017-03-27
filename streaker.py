@@ -14,3 +14,6 @@ date = date.strftime('%b %d, %Y')
 print date
 
 os.system('echo `' + date + '` >> README.md')
+os.system('git add README.md')
+os.system('git commit -m "Commit for ' + date + '"')
+os.system('git push')
