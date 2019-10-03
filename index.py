@@ -8,14 +8,14 @@ def streaker(username):
     page_source = request.read()
     soup = BeautifulSoup(page_source,"html.parser")
     count = 0
-    for element in soup.find_all(attrs={"fill": "#ebedf0"}):
-        element = str(element)
-        element = element.replace('=', ':')
-        element = element.replace('" ', '", ')
-        element = element.replace('<rect', '')
-        element = element.replace('></rect>', '')
+    for div in soup.find_all(attrs={"fill": "#ebedf0"}):
+        div = str(div)
+        div = div.replace('=', ':')
+        div = div.replace('" ', '", ')
+        div = div.replace('<rect', '')
+        div = div.replace('></rect>', '')
         mydict = dict((k.strip(), v.strip()) for k, v in
-                      (item.split(':"') for item in element.split('", ')))
+                      (item.split(':"') for item in div.split('", ')))
         t = datetime.strptime(mydict['data-date'] + '-07:00', '%Y-%m-%d-%H:%M')
         final_date = datetime.strftime(t, '%a %b %d %H:%M %Y')
         print final_date
